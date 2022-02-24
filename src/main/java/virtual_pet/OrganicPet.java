@@ -8,48 +8,68 @@ public abstract class OrganicPet extends VirtualPet{
     protected int boredomLevel;
 
     public OrganicPet(String name, int age) {
-        super(name, age);
-        this.hungerLevel=45;
-        this.thirstLevel=45;
-        this.sleep=45;
+        super(name,age);
+        this.hungerLevel=55;
+        this.thirstLevel=65;
         this.boredomLevel=45;
     }
 
 
-    public int getHungerLevel() {
+    public int getHunger() {
         return hungerLevel;
     }
 
-    public int getThirstLevel() {
+    public int getThirst() {
         return thirstLevel;
     }
 
-//    public void giveWater(){
-//          thirstLevel=thirstLevel-3;
-//        if (thirstLevel >= 50) {
-//            System.out.println("I am not thirsty!");
-//        }
-//    }
+    public int getBoredom() {
+        return boredomLevel;
+    }
+
+    public void play() {
+        boredomLevel = Math.max(0,boredomLevel-10);
+        thirstLevel = Math.min(100,thirstLevel + 10);
+        hungerLevel = Math.min(100,hungerLevel + 10);
+    }
+
+//    @Override
+//    public void tick() {
 //
-//    public void giveFood(){
-//          hungerLevel= hungerLevel-5;
-//          if (hungerLevel>=50){
-//              System.out.println("I am not hungery!");
-//          }
+//        boredomLevel++;
+//        thirstLevel++;
+//        hungerLevel++;
 //
 //    }
 
     @Override
     public void tick() {
-            hungerLevel++;
-            thirstLevel++;
-            boredomLevel++;
+        boredomLevel++;
+        thirstLevel++;
+        hungerLevel++;
     }
 
     @Override
-    public String currentStatus() {
-        return hungerLevel+"\n|Hunger level: " + thirstLevel+ "|\t thrist lever: " + boredomLevel+ "|\t boredom lever: " + sleep+ "|\t sleep lever: ";
+    public String stats(){
 
-
+        return name+":\n|Hunger: "+hungerLevel+"| \t|Boredom: "+boredomLevel+"| \t|Thirst: "+thirstLevel+"|";
     }
+
+
+    public void hunger() {
+
+        hungerLevel = +50;
+    }
+
+    public void  water(){
+
+        thirstLevel += 30;
+    }
+
+    public void feed(){
+
+        hungerLevel += 40;
+    }
+
+
 }

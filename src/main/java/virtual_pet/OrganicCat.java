@@ -1,18 +1,20 @@
 package virtual_pet;
 
-public abstract class OrganicCat extends OrganicPet  {
-    private int BatteryLevel;
-    private int OilLevel;
+public class OrganicCat extends OrganicPet {
 
-//    public OrganicCat(int batteryLevel, int oilLevel) {
-//       // super(batteryLevel);
-//        BatteryLevel = batteryLevel;
-//        OilLevel = oilLevel;
-//
-//    }
 
-    public OrganicCat(String name, int boredomLevel, int age, String breed) {
-        super(name, boredomLevel, age, breed);
+    public OrganicCat(String name, int age) {
+        super(name, age);
     }
 
+    @Override
+    public void walk() {
+        System.out.println("Cats cant walk");
+    }
+    public void play(){
+        boredomLevel-=10;
+        thirstLevel+=10;
+        hungerLevel+=25;
+
+    }
 }

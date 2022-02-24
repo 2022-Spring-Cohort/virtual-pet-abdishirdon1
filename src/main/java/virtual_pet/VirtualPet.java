@@ -2,6 +2,7 @@ package virtual_pet;
 
 
 public abstract class VirtualPet {
+
     protected String name;
     protected int age;
 
@@ -20,9 +21,15 @@ public abstract class VirtualPet {
         return age;
     }
     public abstract void tick();
-    public abstract String currentStatus();
+
+
+    public abstract String stats();
+
+
     public abstract void play();
 
+    public abstract void walk();
 
+//    public abstract void cleanAllPets();
 }
 

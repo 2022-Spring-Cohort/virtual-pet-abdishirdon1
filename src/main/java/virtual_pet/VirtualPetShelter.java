@@ -4,17 +4,18 @@ import java.util.ArrayList;
 
 public class VirtualPetShelter {
    // private ArrayList<VirtualPet> shelter;
-
+    private String byName;
     ArrayList<VirtualPet> shelter;
 
-    public VirtualPetShelter(){
-        this.shelter=new ArrayList<>();
-        shelter.add(new OrganicDog("", 45));
-        shelter.add(new OrganicCat("", 45) {
+    public VirtualPetShelter() {
+        this.shelter = new ArrayList<>();
+        shelter.add(new OrganicCat("jeff",2));
+        shelter.add(new OrganicDog("sam",3));
+        shelter.add(new RobaticDog("Lio",4));
+        shelter.add(new RobaticCat("Rammi", 8));
 
-
-
-            public void addPet(VirtualPet pet){
+    }
+    public void addPet(VirtualPet pet){
         shelter.add(pet);
     }
     public void feedPet(VirtualPet feed){
@@ -23,9 +24,49 @@ public class VirtualPetShelter {
     public void hyderatePet(VirtualPet hydrate) {
         shelter.add(hydrate);
     }
-    public void playWithPet(VirtualPet play){
-        shelter.add(play);
+    public void playWithAll() {
+        for (VirtualPet shelter : shelter) {
+            shelter.play();
+        }
+    }
+    public void adoptAPet(String adoptPet){
+        shelter.remove(findByName(adoptPet));
+    }
+    public void walkPet(VirtualPet walkPet){
+        for(VirtualPet shelter: shelter){
+            shelter.walk();
+        }
     }
 
+
+    private VirtualPet findByName(String name) {
+        VirtualPet byName = null;
+        for (VirtualPet shelter : shelter) {
+            if (shelter.getName().equalsIgnoreCase(name)) {
+                byName = shelter;
+            }
+        }
+        return byName;
     }
+    public String showAllPets(){
+        return shelter.toString();
     }
+    public String showHealth(){
+        String health="";
+        for (VirtualPet shelter: shelter){
+            health+= shelter.stats()+"\n";
+        }
+        return health;
+    }
+    public void tickPets(){
+        for (VirtualPet shelter: shelter){
+            shelter.tick();
+        }
+    }
+
+
+
+
+
+      }
+
