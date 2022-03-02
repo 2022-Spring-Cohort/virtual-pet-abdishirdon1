@@ -4,7 +4,7 @@ public abstract class OrganicPet extends VirtualPet{
 
     protected int hungerLevel;
     protected int thirstLevel;
-    protected int sleep;
+    protected int cleanLevel;
     protected int boredomLevel;
 
     public OrganicPet(String name, int age) {
@@ -12,7 +12,9 @@ public abstract class OrganicPet extends VirtualPet{
         this.hungerLevel=55;
         this.thirstLevel=65;
         this.boredomLevel=45;
+        this.cleanLevel=28;
     }
+
 
 
     public int getHunger() {
@@ -52,13 +54,13 @@ public abstract class OrganicPet extends VirtualPet{
     @Override
     public String stats(){
 
-        return name+":\n|Hunger: "+hungerLevel+"| \t|Boredom: "+boredomLevel+"| \t|Thirst: "+thirstLevel+"|";
+        return name+":\n|Hunger: "+hungerLevel+"| \t|Boredom: "+boredomLevel+"| \t|Thirst: "+thirstLevel+"| \t|Clean: "+ cleanLevel+"|";
     }
 
 
     public void hunger() {
 
-        hungerLevel = +50;
+        hungerLevel += 50;
     }
 
     public void  water(){
@@ -69,6 +71,9 @@ public abstract class OrganicPet extends VirtualPet{
     public void feed(){
 
         hungerLevel += 40;
+    }
+    public void clean(){
+        cleanLevel+=20;
     }
 
 

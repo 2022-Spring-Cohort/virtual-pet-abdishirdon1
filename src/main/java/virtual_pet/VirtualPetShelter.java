@@ -32,7 +32,7 @@ public class VirtualPetShelter {
     public void adoptAPet(String adoptPet){
         shelter.remove(findByName(adoptPet));
     }
-    public void walkPet(VirtualPet walkPet){
+    public void walkAllPets(){
         for(VirtualPet shelter: shelter){
             shelter.walk();
         }
@@ -58,9 +58,32 @@ public class VirtualPetShelter {
         }
         return health;
     }
-    public void tickPets(){
-        for (VirtualPet shelter: shelter){
+    public void tickPets() {
+        for (VirtualPet shelter : shelter) {
             shelter.tick();
+        }
+    }
+        public void cleanAllPets(){
+            for (VirtualPet shelter: shelter){
+                if (shelter instanceof OrganicPet){
+                    ((OrganicPet)shelter).clean();
+                }
+            }
+        }
+
+        public void oilAllPets(){
+            for (VirtualPet shelter: shelter){
+                if (shelter instanceof RobaticPet){
+                    ((RobaticPet)shelter).oil();
+                }
+            }
+        }
+        public void maintenanceAllPets(){
+            for (VirtualPet shelter: shelter){
+                if (shelter instanceof RobaticPet){
+                    ((RobaticPet)shelter).maintenance();
+                }
+            }
         }
     }
 
@@ -68,5 +91,5 @@ public class VirtualPetShelter {
 
 
 
-      }
+
 

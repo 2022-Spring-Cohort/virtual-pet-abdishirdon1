@@ -30,6 +30,9 @@ public abstract class VirtualPet {
 
     public abstract void walk();
 
-//    public abstract void cleanAllPets();
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
 

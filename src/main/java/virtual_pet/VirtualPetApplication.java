@@ -11,6 +11,8 @@ public class VirtualPetApplication {
      * 4.hydrate your pet
      * 5:quite this game.
      */
+
+    private Scanner input;
     public static void main(String[] args) {
         new VirtualPetApplication().gameLoop();
 
@@ -18,51 +20,86 @@ public class VirtualPetApplication {
 
     public void gameLoop() {
         VirtualPetShelter myPets = new VirtualPetShelter();
-        Scanner input = new Scanner(System.in);
+        input=new Scanner(System.in);
+
 
         while (true){
             System.out.println(myPets.showHealth());
             System.out.println("------------------------------------------");
             System.out.println("please select from these options: ");
             System.out.println("------------------------------------------");
-            System.out.println("[0]: play with all pets.");
+            System.out.println("[1]: play with all pets.");
             System.out.println("------------------------------------------");
-            System.out.println("[1]: Walk all pets.");
+            System.out.println("[2]: Walk all pets.");
             System.out.println("------------------------------------------");
             System.out.println("[3]: Adopt a pet.");
             System.out.println("------------------------------------------");
-            System.out.println("[4]: hydrate your pet.");
+            System.out.println("[4]: Add a pet.");
             System.out.println("------------------------------------------");
-            System.out.println("[5]: quite this game. ");
+            System.out.println("[5]: Oil your robotic pet ");
             System.out.println("------------------------------------------");
+            System.out.println("[6]: Clean your organic pets? ");
+            System.out.println("------------------------------------------");
+            System.out.println("[7]: Maintain your robotic pets? ");
+            System.out.println("------------------------------------------");
+            System.out.println("[8]: quite this game. ");
+            System.out.println("------------------------------------------");
+
+
 
             int selection = input.nextInt();
 
             if (selection == 1) {
                 myPets.playWithAll();
 
-            } else if (selection == 2) {
-                System.out.print("what would you like to name your pet? ");
-                String newName = input.nextLine();
+            }  if (selection == 2) {
+                myPets.walkAllPets();
+            }
 
-
-
-            } else if (selection == 3) {
+            if (selection == 3) {
                 System.out.println("which pet would you like to adopt? ");
+                input.nextLine();
                 System.out.println(myPets.showAllPets());
-                String adptedPet = input.nextLine();
-                myPets.adoptAPet(adptedPet);
-                //  myPet.getHungerLevel();
-
-
-            } else if (selection == 4) {
-                System.out.println("Your pet is no longer thirsty!");
-                //   myPet.giveWater();
+                String adoptedPet = input.nextLine();
+                myPets.adoptAPet(adoptedPet);
 
             }
-            if (selection == 5) {
+
+            if (selection == 4) {
+                System.out.println("What kind of pet would you like to add \n[1]: Organic cat \n[2]: Organic dog \n[3]: Robotic cat \n [4]: Robotic dog");
+                int typeOfPet=input.nextInt();
+                input.nextLine();
+
+                    if(typeOfPet==1){
+                        myPets.addPet(createOrganicCat());
+
+                    }
+                    if (typeOfPet==2){
+                        myPets.addPet(createOrganicDog());
+                    }
+                    if (typeOfPet==3){
+                    myPets.addPet(createMechanicalCat());
+                      }
+                    if (typeOfPet==4){
+                    myPets.addPet(createMechanicalDog());
+                    }
+
+            }
+            if (selection==5){
+                myPets.oilAllPets();
+            }
+
+            if (selection==6){
+                myPets.cleanAllPets();
+
+            }
+            if (selection==7){
+                myPets.maintenanceAllPets();
+
+            }
+            if (selection == 8) {
                 System.out.println("You have selected to quite this game. ");
-                //break;
+                break;
             }
             myPets.tickPets();
         }
@@ -74,31 +111,82 @@ public class VirtualPetApplication {
         //Interact with a VirtualPet object in this method
 
     }
-  // System.out.print("Enter you pet's name: ");
-//        String name = input.nextLine();
-//
-//        System.out.println("your pet's is " + name +".");
-//
-//        System.out.print("Enter your pet's age: ");
-//        int age = input.nextInt();
-//        input.nextLine();
-//        System.out.println("your pet's age is " + age +".");
-//       // input.nextLine();
-//
-//
-//        System.out.print("Enter your pet's breed: ");
-//        String breed = input.nextLine();
-//        System.out.println("your pets's breed is: " + breed +".");
-//
-//        System.out.print("How bored is your pet?");
-//        int boredomLevel = input.nextInt();
-//        input.nextLine();
-//
-//        VirtualPetShelter myPet = new VirtualPetShelter();
-//        int selection;
-//
-//
-//        System.out.println();
+    private VirtualPet createMechanicalDog() {
+
+        System.out.print("Enter you pet's name: ");
+        String name = input.nextLine();
+        System.out.print("Enter your pet's age: ");
+        int age = input.nextInt();
+        input.nextLine();
+        System.out.print("What is the oil percentage of your pet?");
+        int oilLevel = input.nextInt();
+        input.nextLine();
+        System.out.println("what is the battery percentage of your mechanical pet? ");
+        int betteryPercentage =input.nextInt();
+        input.nextLine();
+        System.out.println("What is the maintenance level of your pet ");
+        int maintenanceLevel =input.nextInt();
+        input.nextLine();
+        return new RobaticDog(name,age);
+
+    }
+    private VirtualPet createMechanicalCat() {
+
+        System.out.print("Enter you pet's name: ");
+        String name = input.nextLine();
+        System.out.print("Enter your pet's age: ");
+        int age = input.nextInt();
+        input.nextLine();
+        System.out.print("What is the oil percentage of your pet?");
+        int oilLevel = input.nextInt();
+        input.nextLine();
+        System.out.println("what is the battery percentage of your mechanical pet? ");
+        int betteryPercentage =input.nextInt();
+        input.nextLine();
+        System.out.println("What is the maintenance level of your pet ");
+        int maintenanceLevel =input.nextInt();
+        input.nextLine();
+
+        return new RobaticCat(name,age);
+    }
+    private VirtualPet createOrganicCat() {
+
+        System.out.print("Enter you pet's name: ");
+        String name = input.nextLine();
+        System.out.print("Enter your pet's age: ");
+        int age = input.nextInt();
+        input.nextLine();
+        System.out.print("What is the boredom level of your pet?");
+        int boredomLevel = input.nextInt();
+        input.nextLine();
+        System.out.println("what is the thirst level of your pet? ");
+        int thirstLevel =input.nextInt();
+        input.nextLine();
+        System.out.println("What is the hunger level of your pet ");
+        int hungerLevel =input.nextInt();
+        input.nextLine();
+        return new OrganicCat(name,age);
+
+    }
+    private VirtualPet createOrganicDog() {
+
+        System.out.print("Enter you pet's name: ");
+        String name = input.nextLine();
+        System.out.print("Enter your pet's age: ");
+        int age = input.nextInt();
+        input.nextLine();
+        System.out.print("What is the boredom level of your pet?");
+        int boredomLevel = input.nextInt();
+        input.nextLine();
+        System.out.println("what is the thirst level of your pet? ");
+        int thirstLevel =input.nextInt();
+        input.nextLine();
+        System.out.println("What is the hunger level of your pet ");
+        int hungerLevel =input.nextInt();
+        input.nextLine();
+        return new OrganicDog(name,age);
+
+    }
 }
 
 

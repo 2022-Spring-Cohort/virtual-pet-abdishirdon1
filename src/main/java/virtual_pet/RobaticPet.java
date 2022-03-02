@@ -42,4 +42,11 @@ public  abstract class RobaticPet extends VirtualPet{
         return name+":\n|oilLevel: "+oilLevel+"| \t|maintenance: "+maintenanceLevel+"| \t|batteryLevel: "+batteryLevel+"|";
 
     }
+
+    public void oil() {
+        oilLevel+=43;
+    }
+    public void maintenance(){
+        maintenanceLevel+=33;
+    }
 }
